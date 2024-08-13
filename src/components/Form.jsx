@@ -24,7 +24,7 @@ export default function Form({ addTask }) {
       <span className="text-lg">Add a task in the list➡️</span>
       <form onSubmit={handleSubmit}>
         <input
-          className="p-2 rounded-lg"
+          className="p-2 rounded-lg text-gray-800"
           type="text"
           placeholder="Add a new task"
           value={taskInput}

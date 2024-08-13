@@ -12,13 +12,30 @@ export default function App() {
     setTasks([task, ...tasks]);
   }
 
+  function deleteTask(id) {
+    const newArray = tasks.filter((task) => id !== task.id);
+    setTasks(newArray);
+  }
+
+  function handleIsCompleted(id) {
+    const newArray = tasks.map((task) =>
+      task.id === id ? { ...task, isCompleted: true } : task
+    );
+
+    setTasks(newArray);
+  }
+
   return (
     <div className="container mx-auto">
       <AppHeader />
       <main>
         <Form addTask={addTask} />
 
-        <List tasks={tasks} />
+        <List
+          tasks={tasks}
+          deleteTask={deleteTask}
+          handleIsCompleted={handleIsCompleted}
+        />
       </main>
 
       <AppFooter />
