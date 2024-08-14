@@ -25,11 +25,15 @@ export default function App() {
     setTasks(newArray);
   }
 
+  function clearList() {
+    setTasks([]);
+  }
+
   const totalTasks = tasks.length;
 
   /* acc è il risultsto ottenuto dall'operazione nell'iterazione precedente, task è l'elemento dell'array processato */
   /* il ,0 è il secondo argomento del metodo reduce, che setta il valore iniziale di acc */
-  let completedTasks = tasks.reduce((acc, task) => {
+  const completedTasks = tasks.reduce((acc, task) => {
     return acc + (task.isCompleted ? 1 : 0);
   }, 0);
 
@@ -43,6 +47,7 @@ export default function App() {
           tasks={tasks}
           deleteTask={deleteTask}
           handleIsCompleted={handleIsCompleted}
+          clearList={clearList}
         />
       </main>
 
