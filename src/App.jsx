@@ -19,11 +19,19 @@ export default function App() {
 
   function handleIsCompleted(id) {
     const newArray = tasks.map((task) =>
-      task.id === id ? { ...task, isCompleted: true } : task
+      task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
     );
 
     setTasks(newArray);
   }
+
+  const totalTasks = tasks.length;
+
+  /* acc è il risultsto ottenuto dall'operazione nell'iterazione precedente, task è l'elemento dell'array processato */
+  /* il ,0 è il secondo argomento del metodo reduce, che setta il valore iniziale di acc */
+  let completedTasks = tasks.reduce((acc, task) => {
+    return acc + (task.isCompleted ? 1 : 0);
+  }, 0);
 
   return (
     <div className="container mx-auto">
@@ -38,7 +46,8 @@ export default function App() {
         />
       </main>
 
-      <AppFooter />
+      {/* potrei calcolare direttamente totalTasks e completedTasks nel componente e passare come prop items */}
+      <AppFooter totalTasks={totalTasks} completedTasks={completedTasks} />
     </div>
   );
 }
